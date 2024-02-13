@@ -483,7 +483,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty DialogMarginProperty = DependencyProperty.Register(
-        "DialogMargin", typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
+        nameof(DialogMargin), typeof(Thickness), typeof(DialogHost), new PropertyMetadata(default(Thickness)));
 
     public Thickness DialogMargin
     {
@@ -493,6 +493,15 @@ public class DialogHost : ContentControl
 
     public static readonly DependencyProperty OpenDialogCommandDataContextSourceProperty = DependencyProperty.Register(
         nameof(OpenDialogCommandDataContextSource), typeof(DialogHostOpenDialogCommandDataContextSource), typeof(DialogHost), new PropertyMetadata(default(DialogHostOpenDialogCommandDataContextSource)));
+
+    public static readonly DependencyProperty DialogCardStyleProperty = DependencyProperty.Register(
+        nameof(DialogCardStyle), typeof(Style), typeof(DialogHost), new PropertyMetadata(default(Style)));
+
+    public Style DialogCardStyle
+    {
+        get => (Style) GetValue(DialogCardStyleProperty);
+        set => SetValue(DialogCardStyleProperty, value);
+    }
 
     /// <summary>
     /// Defines how a data context is sourced for a dialog if a <see cref="FrameworkElement"/>
@@ -505,7 +514,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty CloseOnClickAwayProperty = DependencyProperty.Register(
-        "CloseOnClickAway", typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
+        nameof(CloseOnClickAway), typeof(bool), typeof(DialogHost), new PropertyMetadata(default(bool)));
 
     /// <summary>
     /// Indicates whether the dialog will close if the user clicks off the dialog, on the obscured background.
@@ -517,7 +526,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty CloseOnClickAwayParameterProperty = DependencyProperty.Register(
-        "CloseOnClickAwayParameter", typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
+        nameof(CloseOnClickAwayParameter), typeof(object), typeof(DialogHost), new PropertyMetadata(default(object)));
 
     /// <summary>
     /// Parameter to provide to close handlers if an close due to click away is instigated.
@@ -529,7 +538,7 @@ public class DialogHost : ContentControl
     }
 
     public static readonly DependencyProperty SnackbarMessageQueueProperty = DependencyProperty.Register(
-        "SnackbarMessageQueue", typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
+        nameof(SnackbarMessageQueue), typeof(SnackbarMessageQueue), typeof(DialogHost), new PropertyMetadata(default(SnackbarMessageQueue), SnackbarMessageQueuePropertyChangedCallback));
 
     private static void SnackbarMessageQueuePropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
     {
@@ -642,7 +651,7 @@ public class DialogHost : ContentControl
 
     public static readonly RoutedEvent DialogOpenedEvent =
         EventManager.RegisterRoutedEvent(
-            "DialogOpened",
+            nameof(DialogOpened),
             RoutingStrategy.Bubble,
             typeof(DialogOpenedEventHandler),
             typeof(DialogHost));
@@ -689,7 +698,7 @@ public class DialogHost : ContentControl
 
     public static readonly RoutedEvent DialogClosingEvent =
         EventManager.RegisterRoutedEvent(
-            "DialogClosing",
+            nameof(DialogClosing),
             RoutingStrategy.Bubble,
             typeof(DialogClosingEventHandler),
             typeof(DialogHost));
@@ -732,7 +741,7 @@ public class DialogHost : ContentControl
 
     public static readonly RoutedEvent DialogClosedEvent =
         EventManager.RegisterRoutedEvent(
-            "DialogClosed",
+            nameof(DialogClosed),
             RoutingStrategy.Bubble,
             typeof(DialogClosedEventHandler),
             typeof(DialogHost));
